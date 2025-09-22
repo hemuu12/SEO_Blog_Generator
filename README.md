@@ -163,4 +163,4 @@ PORT=5000
 
 
 ## ⭐ Star this repo if you find it helpful!
-Built with ❤️ using Next.js, Express, and the power of social media APIs.
+Built with ❤️ using React, Next.js, Express, and the power of social media APIs.
