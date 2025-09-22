@@ -1,0 +1,93 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Direct CSS for immediate application */
+.bg-primary {
+  background-color: #FEA116 !important;
+}
+
+.bg-light {
+  background-color: #F1F8FF !important;
+}
+
+.bg-dark {
+  background-color: #0F172B !important;
+}
+
+.text-primary {
+  color: #FEA116 !important;
+}
+
+.text-light {
+  color: #F1F8FF !important;
+}
+
+.text-dark {
+  color: #0F172B !important;
+}
+
+.border-primary {
+  border-color: #FEA116 !important;
+}
+
+.hover\:bg-primary:hover {
+  background-color: #FEA116 !important;
+}
+
+.hover\:text-primary:hover {
+  color: #FEA116 !important;
+}
+
+.hover\:bg-primary\/90:hover {
+  background-color: rgba(254, 161, 22, 0.9) !important;
+}
+
+@layer base {
+  :root {
+    --primary: #FEA116;
+    --light: #F1F8FF;
+    --dark: #0F172B;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: var(--font-heebo), sans-serif;
+    line-height: 1.6;
+  }
+
+  .font-secondary {
+    font-family: var(--font-pacifico), cursive;
+  }
+
+  .font-nunito {
+    font-family: var(--font-nunito), sans-serif;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-[#FEA116] text-white px-6 py-3 rounded-md font-semibold hover:bg-[#FEA116]/90 transition-colors duration-300;
+  }
+
+  .btn-secondary {
+    @apply border-2 border-[#FEA116] text-[#FEA116] px-6 py-3 rounded-md font-semibold hover:bg-[#FEA116] hover:text-white transition-colors duration-300;
+  }
+
+  .section-title {
+    @apply text-[#FEA116] font-secondary text-lg mb-2;
+  }
+
+  .section-heading {
+    @apply text-4xl lg:text-5xl font-bold text-[#0F172B] mb-6;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
