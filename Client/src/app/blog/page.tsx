@@ -1,22 +1,13 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import BlogForm from "@/components/blogComponent/BlogForm";
 import BlogList from "@/components/blogComponent/BlogList";
 import { motion } from "framer-motion";
 import { Coffee, Globe, LogOut, ArrowLeft } from "lucide-react";
 import { useRouter } from "next/navigation";
 
-type Blog = {
-  id: number;
-  title: string;
-  content: string;
-  tags: string;
-  createdAt: string;
-};
-
 export default function BlogPage() {
-  const [newBlog, setNewBlog] = useState<Blog | undefined>(undefined);
   const router = useRouter();
 
   useEffect(() => {
@@ -92,7 +83,7 @@ export default function BlogPage() {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="max-w-2xl mx-auto bg-white rounded-2xl shadow-lg p-6 border border-gray-100 mb-10"
         >
-          <BlogForm onNewBlog={setNewBlog} />
+          <BlogForm  />
         </motion.div>
 
         {/* Blog List */}
@@ -101,7 +92,7 @@ export default function BlogPage() {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.4 }}
         >
-          <BlogList newBlog={newBlog} />
+          <BlogList  />
         </motion.div>
       </main>
     </div>

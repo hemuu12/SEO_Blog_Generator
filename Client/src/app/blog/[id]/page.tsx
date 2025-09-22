@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import { useEffect, useState } from "react";
@@ -5,7 +6,6 @@ import { useParams, useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowLeft, Volume2, Square } from "lucide-react";
 import { truncateContent } from "@/utils/stringTruncate";
-// import { useAppDispatch, useAppSelector } from "../../..//redux/store";
 import { fetchBlogById } from "../../../redux/slices/BlogSlice";
 import { useDispatch, useSelector } from "react-redux";
 import type { AppDispatch } from "../../../redux/store";
@@ -15,7 +15,7 @@ export default function BlogPageClient() {
   const dispatch = useDispatch<AppDispatch>();
   const id = Number(params?.id);
   const router =useRouter()
-  const { currentBlog: blog, loading, error } = useSelector((state) => state.blogs);
+  const { currentBlog: blog, loading, error } = useSelector((state: any) => state.blogs);
 
   const [expanded, setExpanded] = useState<{ [key: number]: boolean }>({});
   const [speakingPost, setSpeakingPost] = useState<number | null>(null);
@@ -108,7 +108,7 @@ if (!loading && !blog)
         <h1 className="text-3xl font-bold">{blog.title}</h1>
 
         <div className="mt-3 flex flex-wrap gap-2">
-          {blog.tags.split(",").map((tag, i) => (
+          {blog.tags.split(",").map((tag: any, i:any) => (
             <span
               key={i}
               className="px-3 py-1 text-xs font-medium rounded-full bg-white/20 text-white shadow-sm"
@@ -127,7 +127,7 @@ if (!loading && !blog)
       <div className="space-y-6">
         <AnimatePresence>
           {blog.content &&
-            blog.content.map((post, idx) => {
+            blog.content.map((post: any, idx :any) => {
               const isExpanded = expanded[idx] || false;
               const displayText = isExpanded
                 ? post.content

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import Navbar from "../../components/dashboardComponent/Navbar";
@@ -17,7 +18,7 @@ const PAGE_SIZE = 4;
 export default function Dashboard() {
   const dispatch = useDispatch<AppDispatch>();
   const router = useRouter()
-  const { blogs, loading, error } = useSelector((state) => state.blogs);
+  const { blogs, loading, error } = useSelector((state: any) => state.blogs);
 
   const [currentPage, setCurrentPage] = useState(1);
 
