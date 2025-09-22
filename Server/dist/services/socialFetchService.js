@@ -1,22 +1,19 @@
 import axios from "axios";
 export async function fetchFromTwitter(tags, maxPosts = 5) {
-    console.log("✅ fetchFromTwitter called with tags:", tags, "maxPosts:", maxPosts);
     const BEARER_TOKEN = process.env.TWITTER_BEARER_TOKEN;
-    console.log("🔹 Bearer token exists?", !!BEARER_TOKEN);
+    // console.log("Bearer token exists?", !!BEARER_TOKEN);
     if (!BEARER_TOKEN) {
-        console.log("⚠️ No Bearer token found. Exiting.");
+        // console.log("Token");
         return [];
     }
     if (!tags || tags.length === 0) {
-        console.log("⚠️ No tags provided. Exiting.");
+        console.log("No tags are there");
         return [];
     }
-    // Build query string
     const query = tags.map((t) => t.replace(/\s+/g, "+")).join("+");
-    console.log("🔹 Constructed query string:", query);
+    // console.log(" query string:", query);
     try {
         const url = "https://api.twitter.com/2/tweets/search/recent";
-        console.log("🔹 Fetching URL:", url);
         const resp = await axios.get(url, {
             headers: { Authorization: `Bearer ${BEARER_TOKEN}` },
             params: {
@@ -26,26 +23,24 @@ export async function fetchFromTwitter(tags, maxPosts = 5) {
             },
             timeout: 15000,
         });
-        console.log("🔹 Raw response received:", resp.data);
         const tweets = resp.data?.data ?? [];
-        console.log(`🔹 Total tweets fetched: ${tweets.length}`);
+        // console.log(`Total: ${tweets.length}`);
         const results = tweets
-            .map((t, idx) => {
+            .map((t, id) => {
             const post = {
                 title: t.text.slice(0, 50) || "",
                 content: t.text || "",
             };
-            console.log(`🔹 Parsed tweet ${idx + 1}:`, post);
+            // console.log(`Parsed tweet ${id + 1}:`, post);
             return post;
         })
             .filter((p) => p.content);
-        console.log(`🔹 Filtered posts with content: ${results.length}`);
+        // console.log(`Filtered posts with content: ${results.length}`);
         const finalResults = results.slice(0, maxPosts);
-        console.log(`🔹 Returning final posts (maxPosts applied): ${finalResults.length}`);
         return finalResults;
     }
     catch (err) {
-        console.log("❌ Error fetching tweets:", err.response?.data || err.message);
+        console.log("Error fetching tweets:", err.response?.data || err.message);
         return [];
     }
 }

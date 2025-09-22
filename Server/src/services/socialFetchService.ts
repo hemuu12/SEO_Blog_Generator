@@ -6,7 +6,6 @@
     maxTweets?: number;
   }
 
-  // Unified Post type for both Reddit , Dev and Twitter
   export interface SocialPost {
     title: string;
     content: string;

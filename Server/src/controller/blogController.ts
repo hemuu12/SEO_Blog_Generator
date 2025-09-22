@@ -17,7 +17,7 @@ export const generateBlogs = async (req: Request, res: Response) => {
     }
 
     // fetch from Twitter + Reddit + Dev.to
-    const twitterPosts = await fetchFromTwitter(tags, 2); 
+    // const twitterPosts = await fetchFromTwitter(tags, 2); 
 
     const redditPosts = await fetchFromReddit(tags, { maxPosts: 7 });
     const devPosts = await fetchFromDev(tags, { maxPosts: 7 });
@@ -26,7 +26,7 @@ export const generateBlogs = async (req: Request, res: Response) => {
     // console.log("dev :" , devPosts ,"Post Fetched")
     
 
-    const allPosts: SocialPost[] = [...twitterPosts, ...redditPosts, ...devPosts];
+    const allPosts: SocialPost[] = [...redditPosts, ...devPosts];
 
     if (allPosts.length === 0) {
       return res.status(404).json({ message: "No posts found for given tags" });

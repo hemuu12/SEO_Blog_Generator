@@ -1,5 +1,5 @@
 import { PrismaClient } from "@prisma/client";
-import { fetchFromDev, fetchFromReddit, fetchFromTwitter } from "../services/socialFetchService.js";
+import { fetchFromDev, fetchFromReddit } from "../services/socialFetchService.js";
 import { makeTitleFromTags, summarizeText } from "../services/titleService.js";
 const prisma = new PrismaClient();
 export const generateBlogs = async (req, res) => {
@@ -9,12 +9,12 @@ export const generateBlogs = async (req, res) => {
             return res.status(400).json({ message: "tags must be a non-empty array" });
         }
         // fetch from Twitter + Reddit + Dev.to
-        const twitterPosts = await fetchFromTwitter(tags, 2);
+        // const twitterPosts = await fetchFromTwitter(tags, 2); 
         const redditPosts = await fetchFromReddit(tags, { maxPosts: 7 });
         const devPosts = await fetchFromDev(tags, { maxPosts: 7 });
         // console.log("Reddit :" , redditPosts ,"Post Fetched")
         // console.log("dev :" , devPosts ,"Post Fetched")
-        const allPosts = [...twitterPosts, ...redditPosts, ...devPosts];
+        const allPosts = [...redditPosts, ...devPosts];
         if (allPosts.length === 0) {
             return res.status(404).json({ message: "No posts found for given tags" });
         }
