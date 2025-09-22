@@ -26,8 +26,9 @@ Transform social conversations into engaging blog content with AI-powered aggreg
 
 
 ### Prerequisites
+*   React
 *   Node.js 18+
-*   PostgreSQL
+*   PostgreSQL(local for development or Render for production)
 *   API Keys (Twitter Bearer Token)
 
 
@@ -107,7 +108,7 @@ social-blog-generator/
 
 ### Backend (.env)
 ```env
-DATABASE_URL="postgresql://user:password@localhost:5432/blogdb"
+DATABASE_URL="postgresql://username:password-a.oregon-postgres.render.com/blog_seo_project"
 JWT_SECRET="your-secret-key"
 TWITTER_BEARER_TOKEN="your-twitter-token"
 PORT=5000
