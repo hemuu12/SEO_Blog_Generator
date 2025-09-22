@@ -1,4 +1,6 @@
 // redux/slices/blogSlice.ts
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import { Blog, generateBlog, getBlogs, getBlogById, deleteBlog  } from "../Service/BlogService";
 
